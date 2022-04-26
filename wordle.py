@@ -6,10 +6,8 @@ class Wordle:
         self.mainWin.title("Wordle")
         self.mainWin.geometry("500x800")
 
-
     def run(self):
         self.mainWin.mainloop()
-
 
 w = Wordle()
 w.run()
