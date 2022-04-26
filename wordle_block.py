@@ -5,6 +5,6 @@ class wordle_block:
         self.x = x
         self.y = y
     
-    def createBlock():
+    # def createBlock():
         
 

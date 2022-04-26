@@ -7,7 +7,7 @@ class Wordle:
         canvas = tk.Canvas(self.mainWin, width = 500, height = 800)
 
         self.mainWin.title("Wordle")
-        self.mainWin.geometry("500x800")
+        # self.mainWin.geometry("500x800")
         self.blockManager = BlockManager(canvas)
 
     def run(self):
