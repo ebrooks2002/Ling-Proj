@@ -1,10 +1,18 @@
-
+""" class that returns all valid four letter words"""
 class Words:
 
-    def __init__(self):
-        with open('words.txt') as words:
-            words = words.read().split()
-            for word in words:
-                if len(word) == 4:
+    valid_words = []
 
-w = Words()
+    def __init__(self,):
+        with open('words.txt') as words:
+            all_words = words.read().lower().split()
+            for word in all_words:
+                if (len(word) == 4) and (word.isalpha()):
+                    self.valid_words.append(word)
+
+    def getWords(self):
+        return self.valid_words
+                    
+
+
+
