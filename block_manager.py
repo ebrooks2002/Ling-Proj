@@ -7,24 +7,53 @@ class BlockManager:
         length = 90
         buffer = 10
         x1 = 10
-        x2 = 100
         y1 = 10
-        y2 = 100
-        
-        for x in range(6):
-            canvas.create_rectangle(x1, x2, y1, y2, fill = "green")
-            x1 += x1 + x2
-            x2 += x2 + buffer + length
-            y1 += 
-            y2 += 
-            for y in range(6):
-                
-                
 
-                # rect1 = canvas.create_rectangle(10, 10, 100, 100, fill = "green")
-                # rect2 = canvas.create_rectangle(10, 110, 100, 200, fill = "green")
-                # rect3 = canvas.create_rectangle(10, 210, 100, 300, fill = "green")
-                # rect4 = canvas.create_rectangle(10, 310, 100, 400, fill = "green")
-                # rect5 = canvas.create_rectangle(10, 410, 100, 500, fill = "green")
-                # rect6 = canvas.create_rectangle(10, 510, 100, 600, fill = "green")
-                # rect7 = canvas.create_rectangle(110, 10, 200, 100, fill = "green")
+        
+    #     for i in range(6):
+    #         self.createRectangle(canvas, x1, y1, length, "light gray")
+    #         x1 += length + buffer
+
+    #     x1 = 10
+    #     y1 += length + buffer
+
+    #     for i in range(6):
+    #         self.createRectangle(canvas, x1, y1, length)
+    #         x1 += length + buffer
+
+    #     x1 = 10
+    #     y1 += length + buffer
+
+    #     for i in range(6):
+    #         self.createRectangle(canvas, x1, y1, length)
+    #         x1 += length + buffer
+
+    #     x1 = 10
+    #     y1 += length + buffer
+
+    #     for i in range(6):
+    #         self.createRectangle(canvas, x1, y1, length)
+    #         x1 += length + buffer
+
+    #     x1 = 10
+    #     y1 += length + buffer
+
+    #     for i in range(6):
+    #         self.createRectangle(canvas, x1, y1, length)
+    #         x1 += length + buffer
+
+    #     x1 = 10
+    #     y1 += length + buffer
+
+    #     for i in range(6):
+    #         self.createRectangle(canvas, x1, y1, length)
+    #         x1 += length + buffer
+
+    #     x1 = 10
+    #     y1 += length + buffer
+
+                
+    
+    # def createRectangle(self, canvas, x1, y1, size, color = "white", active = "cyan"): 
+    #     canvas.create_rectangle(x1, y1, x1 + size, y1 + size, fill = color, activefill = active)
+        

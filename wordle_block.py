@@ -4,6 +4,8 @@ class wordle_block:
     def __init__(self, x, y, correctLetter, letterGuessed):
         self.x = x
         self.y = y
+        self.letter = letterGuessed
+        self.correctLetter = correctLetter
 
     
     # def createBlock():
