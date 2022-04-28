@@ -30,7 +30,6 @@ class Wordle:
                 listEntry.append(e1)
 
         self.addButtons()
-
         print(listEntry)
 
         # self.blockManager = BlockManager(self.mainWin)
@@ -61,13 +60,10 @@ class Wordle:
 
     def buttonCallBacks(self):
         print("please work")
-        
-        
+            
     def run(self):
         self.mainWin.mainloop()
         self.choose_word()
-
-        
 
 w = Wordle()
 w.run()
