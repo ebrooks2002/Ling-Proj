@@ -1,5 +1,3 @@
-from curses import BUTTON1_CLICKED
-from gc import callbacks
 import tkinter as tk
 from tkinter import X, Y, Button, Canvas, ttk
 import random
@@ -31,6 +29,7 @@ class Wordle:
                 self.listEntry.append(e1)
 
         self.addButtons()
+        self.choose_word()
         print(self.listEntry)
 
         # self.blockManager = BlockManager(self.mainWin)
@@ -39,7 +38,6 @@ class Wordle:
         w = Words()
         self.valid_words = w.getWords()
         length = len(self.valid_words)
-        print(length)
         rand_num = random.randint(0, length-1)
         self.correctWord = self.valid_words[rand_num]
         print(self.correctWord)
@@ -52,22 +50,43 @@ class Wordle:
             # print(txt)
 
     def addButtons(self):
-        self.btn1 = Button(self.mainWin, text='Enter', command=self.buttonCallBacks).place(x=330, y=40)
-        self.btn2 = Button(self.mainWin, text='Enter').place(x=330, y=130)
-        self.btn3 = Button(self.mainWin, text='Enter').place(x=330, y=220)
-        self.btn4 = Button(self.mainWin, text='Enter').place(x=330, y=310)
-        self.btn5 = Button(self.mainWin, text='Enter').place(x=330, y=400)
-        self.btn6 = Button(self.mainWin, text='Enter').place(x=330, y=490)
+        self.btn1 = Button(self.mainWin, text='Enter', command=partial(self.buttonCallBacks, 0)).place(x=330, y=40)
+        self.btn2 = Button(self.mainWin, text='Enter', command=partial(self.buttonCallBacks, 1)).place(x=330, y=130)
+        self.btn3 = Button(self.mainWin, text='Enter', command=partial(self.buttonCallBacks, 2)).place(x=330, y=220)
+        self.btn4 = Button(self.mainWin, text='Enter', command=partial(self.buttonCallBacks, 3)).place(x=330, y=310)
+        self.btn5 = Button(self.mainWin, text='Enter', command=partial(self.buttonCallBacks, 4)).place(x=330, y=400)
+        self.btn6 = Button(self.mainWin, text='Enter', command=partial(self.buttonCallBacks, 5)).place(x=330, y=490)
 
-    def buttonCallBacks(self):
+    def buttonCallBacks(self, rowNumber):
         print("please work")
-        print(self.getRow(0))
+        print(self.getRow(rowNumber))
+        print(self.compareWord(self.getRow(rowNumber)))
 
     def getRow(self, i):
+        i = i * 4
+        word = ""
         listEntry2 = []
         for i in self.listEntry[i : i + 4]:
             listEntry2 += [i.get()]
-        return listEntry2
+        for i in listEntry2:
+            word += i
+        return word
+
+    def compareWord(self, guess):
+        listCorrectWord = list(self.correctWord)
+        listGuess = list(guess)
+        colors = []
+        print(len(listCorrectWord))
+        print(len(listGuess))
+        for i in range(4):
+            if listCorrectWord[i] == listGuess[i]:
+                colors.append(2)
+            elif listGuess[i] in listCorrectWord:
+                colors.append(1)
+            else:
+                colors.append(0)
+        print(colors)
+
 
     def run(self):
         self.mainWin.mainloop()
