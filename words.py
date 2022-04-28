@@ -1,18 +1,39 @@
-"""class that returns all valid four letter words"""
+"""class that a few four letter words"""
+from tkinter import W
+
 class Words:
 
     valid_words = []
 
-    def __init__(self,):
-        with open('words.txt') as words:
+    def __init__(self):
+        self.scanText('words.txt')
+    
+    def scanText(self, textfile):
+        with open(textfile) as words:
             all_words = words.read().lower().split()
             for word in all_words:
-                if (len(word) == 4) and (word.isalpha()):
+                notIn = word not in self.valid_words
+                if len(word) == 4 and word.isalpha() and notIn:
                     self.valid_words.append(word)
 
     def getWords(self):
+        print(len(self.valid_words))
         return self.valid_words
+
+
+
+        
+
+
+
+
+
+        
+
+    
                     
+
+                
 
 
 
