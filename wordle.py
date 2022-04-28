@@ -14,23 +14,24 @@ class Wordle:
 
     valid_words = None
     correctWord = ""
+    listEntry = None
     
     def __init__(self):
         self.mainWin = tk.Tk()
         self.mainWin.title("Wordle")
         self.mainWin.geometry("400x800")
         #self.canvas = Canvas(self.mainWin)
-        listEntry = []
+        self.listEntry = []
         # Use state = DISABLED after a row has been completed
         for row in range(6):
             for column in range(4):
                 e1 = tk.Entry(self.mainWin, font = "Times 70", justify = tk.CENTER, relief = tk.GROOVE, width = 2)
                 e1.grid(row = row, column = column)
                 e1.bind("ascii_letters", partial(self.testEntryResponse, e1))
-                listEntry.append(e1)
+                self.listEntry.append(e1)
 
         self.addButtons()
-        print(listEntry)
+        print(self.listEntry)
 
         # self.blockManager = BlockManager(self.mainWin)
 
@@ -60,7 +61,14 @@ class Wordle:
 
     def buttonCallBacks(self):
         print("please work")
-            
+        print(self.getRow(0))
+
+    def getRow(self, i):
+        listEntry2 = []
+        for i in self.listEntry[i : i + 4]:
+            listEntry2 += [i.get()]
+        return listEntry2
+
     def run(self):
         self.mainWin.mainloop()
         self.choose_word()
