@@ -1,4 +1,4 @@
-""" class that returns all valid four letter words"""
+"""class that returns all valid four letter words"""
 class Words:
 
     valid_words = []
