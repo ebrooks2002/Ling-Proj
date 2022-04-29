@@ -5,14 +5,15 @@ from functools import partial
 from string import ascii_letters
 from turtle import onclick
 
-from block_manager import BlockManager
+from setuptools import Command
+
+
 from words import Words
 
 class Wordle: 
 
     valid_words = None
     correctWord = ""
-    listEntry = None
     
     def __init__(self):
         self.mainWin = tk.Tk()
@@ -31,8 +32,6 @@ class Wordle:
         self.addButtons()
         self.choose_word()
         print(self.listEntry)
-
-        # self.blockManager = BlockManager(self.mainWin)
 
     def choose_word(self):
         w = Words()
@@ -59,8 +58,8 @@ class Wordle:
 
     def buttonCallBacks(self, rowNumber):
         print("please work")
-        print(self.getRow(rowNumber))
-        print(self.compareWord(self.getRow(rowNumber)))
+        self.getRow(rowNumber)
+        self.compareWord(self.getRow(rowNumber), rowNumber)
 
     def getRow(self, i):
         i = i * 4
@@ -72,21 +71,30 @@ class Wordle:
             word += i
         return word
 
-    def compareWord(self, guess):
+    def compareWord(self, guess, rowNumber):
         listCorrectWord = list(self.correctWord)
         listGuess = list(guess)
         colors = []
-        print(len(listCorrectWord))
-        print(len(listGuess))
+        rowNumber *= 4
         for i in range(4):
             if listCorrectWord[i] == listGuess[i]:
                 colors.append(2)
+                green = self.listEntry[rowNumber + i]
+                print(green)
+                
             elif listGuess[i] in listCorrectWord:
                 colors.append(1)
+                yellow = self.listEntry[rowNumber + i]
+                type(yellow)
+                print(yellow)
+                
             else:
                 colors.append(0)
-        print(colors)
+                grey = self.listEntry[rowNumber + i]
+                type(grey)
+                print(grey)
 
+        print(colors)
 
     def run(self):
         self.mainWin.mainloop()
