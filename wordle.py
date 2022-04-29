@@ -1,17 +1,15 @@
 import tkinter as tk
-from tkinter import X, Y, Button, Canvas, ttk
+from tkinter import X, Y, Button, Canvas, StringVar, ttk
 import random
 from functools import partial
 from string import ascii_letters
-from turtle import onclick
 
 from setuptools import Command
-
 
 from words import Words
 
 class Wordle: 
-
+    w = Words()
     valid_words = None
     correctWord = ""
     
@@ -24,14 +22,16 @@ class Wordle:
         # Use state = DISABLED after a row has been completed
         for row in range(6):
             for column in range(4):
-                e1 = tk.Entry(self.mainWin, font = "Times 70", justify = tk.CENTER, relief = tk.GROOVE, width = 2)
+                self.var = StringVar()
+                self.var.trace(mode="w", callback=self.compareWord)
+                e1 = tk.Entry(self.mainWin, font = "Times 70", justify = tk.CENTER, relief = tk.GROOVE, width = 2, textvariable=self.var)
                 e1.grid(row = row, column = column)
                 e1.bind("ascii_letters", partial(self.testEntryResponse, e1))
                 self.listEntry.append(e1)
 
         self.addButtons()
         self.choose_word()
-        print(self.listEntry)
+        
 
     def choose_word(self):
         w = Words()
@@ -39,12 +39,12 @@ class Wordle:
         length = len(self.valid_words)
         rand_num = random.randint(0, length-1)
         self.correctWord = self.valid_words[rand_num]
-        print(self.correctWord)
+        
 
     def testEntryResponse(self, entry, event):
         if event.keysym == "Return":
             print("Return pressed")
-            print(entry.get())
+            
             # txt = entryBox.get()
             # print(txt)
 
@@ -58,8 +58,10 @@ class Wordle:
 
     def buttonCallBacks(self, rowNumber):
         print("please work")
-        self.getRow(rowNumber)
-        self.compareWord(self.getRow(rowNumber), rowNumber)
+        word = self.getRow(rowNumber)
+        if self.w.contains(word) == False:
+            print("not a word")
+        self.compareWord(word, rowNumber)
 
     def getRow(self, i):
         i = i * 4
@@ -79,26 +81,22 @@ class Wordle:
         for i in range(4):
             if listCorrectWord[i] == listGuess[i]:
                 colors.append(2)
-                green = self.listEntry[rowNumber + i]
-                print(green)
+                self.listEntry[rowNumber + i].config({"background": "green"})
                 
             elif listGuess[i] in listCorrectWord:
                 colors.append(1)
-                yellow = self.listEntry[rowNumber + i]
-                type(yellow)
-                print(yellow)
+                self.listEntry[rowNumber + i].config({"background":"yellow"})
                 
             else:
                 colors.append(0)
-                grey = self.listEntry[rowNumber + i]
-                type(grey)
-                print(grey)
-
+                self.listEntry[rowNumber + i].config({"background":"grey"})
+                
         print(colors)
 
     def run(self):
         self.mainWin.mainloop()
         self.choose_word()
+
 
 w = Wordle()
 w.run()
