@@ -16,12 +16,14 @@ class Words:
                 if len(word) == 4 and word.isalpha() and notIn:
                     self.valid_words.append(word)
 
+    # Make a set of words
     def contains(self, word):
         return word in self.valid_words
 
     def getWords(self):
         print(len(self.valid_words))
         return self.valid_words
+    
 
 
         
