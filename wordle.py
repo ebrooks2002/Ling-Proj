@@ -24,6 +24,13 @@ class Wordle:
         self.mainWin.geometry("400x800")
         self.listEntry = []
 
+        self.btn1 = Button(self.mainWin, text='Enter', command=partial(self.buttonCallBacks, 0)).place(x=325, y=40)
+        self.btn2 = Button(self.mainWin, text='Enter', command=partial(self.buttonCallBacks, 1)).place(x=325, y=150)
+        self.btn3 = Button(self.mainWin, text='Enter', command=partial(self.buttonCallBacks, 2)).place(x=325, y=260)
+        self.btn4 = Button(self.mainWin, text='Enter', command=partial(self.buttonCallBacks, 3)).place(x=325, y=370)
+        self.btn5 = Button(self.mainWin, text='Enter', command=partial(self.buttonCallBacks, 4)).place(x=325, y=480)
+        self.btn6 = Button(self.mainWin, text='Enter', command=partial(self.buttonCallBacks, 5)).place(x=325, y=590)
+
         for row in range(6):
             for column in range(4):
                 self.var = StringVar()
@@ -32,7 +39,7 @@ class Wordle:
                 e1.grid(row = row, column = column)
                 self.listEntry.append(e1)
 
-        self.addButtons()
+        # self.addButtons()
         self.choose_word()
         
 
@@ -55,11 +62,23 @@ class Wordle:
         print("please work")
         word = self.getRow(rowNumber)
         if self.words.contains(word) == False:
+            # return None
             print("not a word")
         else:
-            self.destroy()
-        self.checkWin(self.compareWord(word, rowNumber), rowNumber)
-        self.disableRow(rowNumber)
+            if rowNumber == 1:
+                self.btn1.destroy()
+            if rowNumber == 2:
+                self.btn2.destroy()
+            if rowNumber == 3:
+                self.btn3.destroy()
+            if rowNumber == 4:
+                self.btn4.destroy()
+            if rowNumber == 5:
+                self.btn5.destroy()
+            if rowNumber == 6:
+                self.btn6.destroy()
+            self.checkWin(self.compareWord(word, rowNumber), rowNumber)
+            self.disableRow(rowNumber)
 
 
     def getRow(self, i):
@@ -102,9 +121,11 @@ class Wordle:
         setColorList = set(colorList)
         if setColorList == {2}:
             print("You win!")
+            print("The correct word was: " + self.correctWord + "!")
             self.mainWin.destroy()
         if rowNumber == 5 and setColorList != {2}:
             print("You Lose!")
+            print("The correct word was: " + self.correctWord + "!")
             self.mainWin.destroy()
 
     def disableRow(self, rowNumber):
