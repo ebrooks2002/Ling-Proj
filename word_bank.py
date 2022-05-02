@@ -1,12 +1,14 @@
-"""class that a few four letter words"""
-from tkinter import W
+# Authors: Ethan Brooks and Eddie Chen
+# Date: 5/2/2022
 
-class Words:
+class WordBank:
+    """class that a few four letter words"""
 
     valid_words = []
 
     def __init__(self):
         self.scanText('words.txt')
+
     
     def scanText(self, textfile):
         with open(textfile) as words:
