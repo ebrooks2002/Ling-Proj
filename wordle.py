@@ -1,36 +1,27 @@
+import string
 import tkinter as tk
-from tkinter import X, Y, Button, Canvas, StringVar, ttk
+from tkinter import CENTER, Button, Label, StringVar
 import random
 from functools import partial
-from string import ascii_letters
-
-from setuptools import Command
 
 from words import Words
 
 class Wordle: 
     words = Words()
     valid_words = None
+    mainWin = tk.Tk()
     correctWord = ""
+    unused_letters = list(string.ascii_lowercase)
+    used_letters = set([])
+    used = Label(mainWin)
+    unused = Label(mainWin)
     
-    # Word Bank Improvement Needed
-    # Fix Button Position
-    # Print out correct word
-    # Buttons need to disappear after one click
-
     def __init__(self):
-        self.mainWin = tk.Tk()
         self.mainWin.title("Wordle")
-        self.mainWin.geometry("400x800")
-        self.listEntry = []
-
-        self.btn1 = Button(self.mainWin, text='Enter', command=partial(self.buttonCallBacks, 0)).place(x=325, y=40)
-        self.btn2 = Button(self.mainWin, text='Enter', command=partial(self.buttonCallBacks, 1)).place(x=325, y=150)
-        self.btn3 = Button(self.mainWin, text='Enter', command=partial(self.buttonCallBacks, 2)).place(x=325, y=260)
-        self.btn4 = Button(self.mainWin, text='Enter', command=partial(self.buttonCallBacks, 3)).place(x=325, y=370)
-        self.btn5 = Button(self.mainWin, text='Enter', command=partial(self.buttonCallBacks, 4)).place(x=325, y=480)
-        self.btn6 = Button(self.mainWin, text='Enter', command=partial(self.buttonCallBacks, 5)).place(x=325, y=590)
-
+        self.mainWin.geometry("550x800")
+        self.listEntry = [] 
+        self.addButtons()
+        
         for row in range(6):
             for column in range(4):
                 self.var = StringVar()
@@ -38,11 +29,9 @@ class Wordle:
                 e1 = tk.Entry(self.mainWin, font = "Times 70", justify = tk.CENTER, relief = tk.GROOVE, width = 2, textvariable=self.var)
                 e1.grid(row = row, column = column)
                 self.listEntry.append(e1)
-
-        # self.addButtons()
+        
         self.choose_word()
         
-
     def choose_word(self):
         w = Words()
         self.valid_words = w.getWords()
@@ -57,30 +46,30 @@ class Wordle:
         self.btn4 = Button(self.mainWin, text='Enter', command=partial(self.buttonCallBacks, 3)).place(x=325, y=370)
         self.btn5 = Button(self.mainWin, text='Enter', command=partial(self.buttonCallBacks, 4)).place(x=325, y=480)
         self.btn6 = Button(self.mainWin, text='Enter', command=partial(self.buttonCallBacks, 5)).place(x=325, y=590)
+        
 
     def buttonCallBacks(self, rowNumber):
-        print("please work")
         word = self.getRow(rowNumber)
+        
         if self.words.contains(word) == False:
-            # return None
-            print("not a word")
-        else:
-            if rowNumber == 1:
-                self.btn1.destroy()
-            if rowNumber == 2:
-                self.btn2.destroy()
-            if rowNumber == 3:
-                self.btn3.destroy()
-            if rowNumber == 4:
-                self.btn4.destroy()
-            if rowNumber == 5:
-                self.btn5.destroy()
-            if rowNumber == 6:
-                self.btn6.destroy()
-            self.checkWin(self.compareWord(word, rowNumber), rowNumber)
-            self.disableRow(rowNumber)
+            return None
+           
+        self.manageUsedLetters(word)
+        self.checkWin(self.compareWord(word, rowNumber), rowNumber)
+        self.disableRow(rowNumber)
 
-
+    def manageUsedLetters(self, word):
+        Wordle.unused.destroy()
+        for letter in word:
+            letter = letter.lower()
+            if letter in self.unused_letters:
+                self.used_letters.add(letter)
+                self.unused_letters.remove(letter)
+        Wordle.used = Label(self.mainWin, text="used: "+ str(self.used_letters),font=("arial", 14))
+        Wordle.used.place(x=10, y=650)
+        Wordle.unused = Label(self.mainWin, text="unused: "+str(self.unused_letters),font=("arial", 14))
+        Wordle.unused.place(x=10, y=700)
+        
     def getRow(self, i):
         i = i * 4
         word = ""
@@ -95,7 +84,6 @@ class Wordle:
         i = i * 4
         return self.listEntry[i : i + 4]
         
-
     def compareWord(self, guess, rowNumber):
         listCorrectWord = list(self.correctWord)
         listGuess = list(guess)
@@ -105,28 +93,24 @@ class Wordle:
             self.listEntry[rowNumber + i].config({"disabledforeground": "black"})
             if listCorrectWord[i] == listGuess[i]:
                 colors.append(2)
-                # self.listEntry[rowNumber + i].config({"background": "green"})
                 self.listEntry[rowNumber + i].config({"disabledbackground": "green"})
             elif listGuess[i] in listCorrectWord:
                 colors.append(1)
-                # self.listEntry[rowNumber + i].config({"background":"yellow"})
                 self.listEntry[rowNumber + i].config({"disabledbackground":"yellow"})
             else:
                 colors.append(0)
-                # self.listEntry[rowNumber + i].config({"background":"grey"})
                 self.listEntry[rowNumber + i].config({"disabledbackground":"grey"})
+
         return colors
     
     def checkWin(self, colorList, rowNumber):
         setColorList = set(colorList)
         if setColorList == {2}:
-            print("You win!")
-            print("The correct word was: " + self.correctWord + "!")
-            self.mainWin.destroy()
-        if rowNumber == 5 and setColorList != {2}:
-            print("You Lose!")
-            print("The correct word was: " + self.correctWord + "!")
-            self.mainWin.destroy()
+            print("you won")
+            Label(self.mainWin, anchor=CENTER, text="You Win!", font=("Arial",40), bg="green").place(x=100, y=300)
+        if rowNumber == 5 and setColorList != {2}:       
+            Label(self.mainWin, anchor=CENTER, text=f"You Lose! Correct Word: {self.correctWord}", font=("Arial",30), bg="red").place(x=80, y=300)
+            print("you lost")
 
     def disableRow(self, rowNumber):
         listEntryObjects = self.getRowEntryBoxes(rowNumber)
@@ -134,9 +118,9 @@ class Wordle:
             i.config(state = "disabled")
 
     def run(self):
+        print(self.correctWord)
         self.mainWin.mainloop()
         self.choose_word()
-
-
+        
 w = Wordle()
 w.run()
