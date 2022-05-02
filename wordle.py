@@ -1,5 +1,6 @@
 # Authors: Ethan Brooks and Eddie Chen
 # Date: 5/2/2022
+
 import string
 import tkinter as tk
 from tkinter import CENTER, Button, Label, StringVar
@@ -9,7 +10,6 @@ from word_bank import WordBank
 
 class Wordle: 
     """class that runs main wordle game"""
-
     words = WordBank()
     valid_words = None
     mainWin = tk.Tk()
@@ -20,6 +20,7 @@ class Wordle:
     unused = Label(mainWin)
     
     def __init__(self):
+        '''Constructor initalizes main window, buttons, entryboxes. chooses correct word.'''
         self.mainWin.title("Wordle")
         self.mainWin.geometry("550x800")
         self.listEntry = [] 
@@ -28,7 +29,7 @@ class Wordle:
         self.choose_word()
 
     def addEntryBoxes(self):
-        '''add entry boxes to input letters to mainWin using nested for loop'''
+        '''Add entry boxes to input letters to mainWin using nested for loop'''
         for row in range(6):
             for column in range(4):
                 self.var = StringVar()
@@ -46,7 +47,7 @@ class Wordle:
         self.correctWord = self.valid_words[rand_num]
         
     def addButtons(self):
-        ''' buttons added to mainWin for submitting a word guess'''
+        '''Buttons added to mainWin for submitting a word guess'''
         self.btn1 = Button(self.mainWin, text='Enter', command=partial(self.buttonCallBacks, 0)).place(x=325, y=40)
         self.btn2 = Button(self.mainWin, text='Enter', command=partial(self.buttonCallBacks, 1)).place(x=325, y=150)
         self.btn3 = Button(self.mainWin, text='Enter', command=partial(self.buttonCallBacks, 2)).place(x=325, y=260)
@@ -54,11 +55,10 @@ class Wordle:
         self.btn5 = Button(self.mainWin, text='Enter', command=partial(self.buttonCallBacks, 4)).place(x=325, y=480)
         self.btn6 = Button(self.mainWin, text='Enter', command=partial(self.buttonCallBacks, 5)).place(x=325, y=590)
         
-
     def buttonCallBacks(self, rowNumber):
-        ''' everytime a button is pressed, get the letters in the entry boxes, 
+        '''Everytime a button is pressed, get the letters in the entry boxes, 
             check if it is in word bank, and then check letters.'''
-        word = self.getRow(rowNumber)
+        word = self.get_rows_word(rowNumber)
         if self.words.contains(word) == False:
             return None
         self.manageUsedLetters(word)
@@ -66,8 +66,8 @@ class Wordle:
         self.disableRow(rowNumber)
 
     def manageUsedLetters(self, word):
-        ''' if letter has been used add to used letters and remove from unused letters.
-            update the label on the screen.'''
+        '''If letter has been used, add to used letters and remove from unused letters.
+            Also updates the label on the screen.'''
         Wordle.unused.destroy()
         for letter in word:
             letter = letter.lower()
@@ -79,7 +79,9 @@ class Wordle:
         Wordle.unused = Label(self.mainWin, text="unused: "+str(self.unused_letters),font=("arial", 14))
         Wordle.unused.place(x=10, y=700)
         
-    def getRow(self, i):
+    def get_rows_word(self, i):
+        '''Returns the word for the row that was given. 0 for i returns first
+           word entered.'''
         i = i * 4
         word = ""
         listEntry2 = []
@@ -89,11 +91,14 @@ class Wordle:
             word += i
         return word
 
-    def getRowEntryBoxes(self, i):
+    def get_rows_entrys(self, i):
+        '''Returns entry boxes for the row given. 0 for i returns first row of boxes'''
         i = i * 4
         return self.listEntry[i : i + 4]
         
     def compareWord(self, guess, rowNumber):
+        '''Compares the guess with the correct word and colors the entry
+           boxes accordingly.'''
         listCorrectWord = list(self.correctWord)
         listGuess = list(guess)
         colors = []
@@ -109,9 +114,12 @@ class Wordle:
             else:
                 colors.append(0)
                 self.listEntry[rowNumber + i].config({"disabledbackground":"grey"})
+
         return colors
     
     def checkWin(self, colorList, rowNumber):
+        '''If the color list is only contains 2's, the player has won. Creates labels to display
+           win/lose.'''
         setColorList = set(colorList)
         if setColorList == {2}:
             print("you won")
@@ -121,14 +129,17 @@ class Wordle:
             print("you lost")
 
     def disableRow(self, rowNumber):
-        listEntryObjects = self.getRowEntryBoxes(rowNumber)
+        '''disables entry boxes so users can only make one guess per row.'''
+        listEntryObjects = self.get_rows_entrys(rowNumber)
         for i in listEntryObjects:
             i.config(state = "disabled")
 
     def run(self):
+        '''creates main game loop'''
         print(self.correctWord)
         self.mainWin.mainloop()
-        self.choose_word()
         
-w = Wordle()
-w.run()
+
+if __name__ == "__main__":
+    w = Wordle()
+    w.run()
