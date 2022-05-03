@@ -1,7 +1,6 @@
 # Authors: Ethan Brooks and Eddie Chen
 # Date: 5/2/2022
 
-
 class WordBank:
     """Class that creates a valid word bank"""
     valid_words = []
