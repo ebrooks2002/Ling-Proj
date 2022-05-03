@@ -24,8 +24,8 @@ class Wordle:
         self.mainWin.title("Wordle")
         self.mainWin.geometry("550x800")
         self.listEntry = [] 
-        self.addButtons()
         self.addEntryBoxes()
+        self.addButtons()
         self.choose_word()
 
     def addEntryBoxes(self):
@@ -48,12 +48,12 @@ class Wordle:
         
     def addButtons(self):
         '''Buttons added to mainWin for submitting a word guess'''
-        self.btn1 = Button(self.mainWin, text='Enter', command=partial(self.buttonCallBacks, 0)).place(x=325, y=40)
-        self.btn2 = Button(self.mainWin, text='Enter', command=partial(self.buttonCallBacks, 1)).place(x=325, y=150)
-        self.btn3 = Button(self.mainWin, text='Enter', command=partial(self.buttonCallBacks, 2)).place(x=325, y=260)
-        self.btn4 = Button(self.mainWin, text='Enter', command=partial(self.buttonCallBacks, 3)).place(x=325, y=370)
-        self.btn5 = Button(self.mainWin, text='Enter', command=partial(self.buttonCallBacks, 4)).place(x=325, y=480)
-        self.btn6 = Button(self.mainWin, text='Enter', command=partial(self.buttonCallBacks, 5)).place(x=325, y=590)
+        self.btn1 = Button(self.mainWin, text = 'Enter', command = partial(self.buttonCallBacks, 0)).place(x = 400, y = 40)
+        self.btn2 = Button(self.mainWin, text = 'Enter', command = partial(self.buttonCallBacks, 1)).place(x = 400, y = 150)
+        self.btn3 = Button(self.mainWin, text = 'Enter', command = partial(self.buttonCallBacks, 2)).place(x = 400, y = 260)
+        self.btn4 = Button(self.mainWin, text = 'Enter', command = partial(self.buttonCallBacks, 3)).place(x = 400, y = 370)
+        self.btn5 = Button(self.mainWin, text = 'Enter', command = partial(self.buttonCallBacks, 4)).place(x = 400, y = 480)
+        self.btn6 = Button(self.mainWin, text = 'Enter', command = partial(self.buttonCallBacks, 5)).place(x = 400, y = 590)
         
     def buttonCallBacks(self, rowNumber):
         '''Everytime a button is pressed, get the letters in the entry boxes, 
