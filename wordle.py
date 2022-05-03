@@ -89,7 +89,7 @@ class Wordle:
             listEntry2 += [i.get()]
         for i in listEntry2:
             word += i
-        return word
+        return word.lower()
 
     def get_rows_entrys(self, i):
         '''Returns entry boxes for the row given. 0 for i returns first row of boxes'''
@@ -139,7 +139,6 @@ class Wordle:
         print(self.correctWord)
         self.mainWin.mainloop()
         
-
 if __name__ == "__main__":
     w = Wordle()
     w.run()

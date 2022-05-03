@@ -1,6 +1,9 @@
 # Authors: Ethan Brooks and Eddie Chen
 # Date: 5/2/2022
-import re
+
+import spacy
+nlp = spacy.load("en_core_web_sm")
+
 
 class WordBank:
     """Class that creates a valid word bank"""
@@ -23,7 +26,7 @@ class WordBank:
         return word in self.valid_words
 
     def contains_vowels(self, word):
-        ''' check if word has vowels.'''
+        ''' check if word has vowels. returns true if it does.'''
         vowels = ['a', 'i', 'o', 'u', 'e', 'y']
         count = 0
         for letter in word:
