@@ -150,27 +150,32 @@ Given an unknown obscure 4-letter word and 6 tries, how often were players going
 
 1. How does the code address your narrow research question? For example, what information or 
 secondary data did you derive from primary sources?
-From the primary source were were able to eliminate words that weren't four letters, that had numbers, and that didn't have vowels.
+Inside the code we were able to eliminate words that weren't four letters, that had numbers, and that didn't have vowels from our list of words that
+we got from our primary source. (WHAT IS OUR PRIMARY SOURCE AND WHERE DID WE GET IT FROM?)
 
 2. What is known about the phenomenon you are looking at? Consult and cite at least one source 
 (may be informal) that contributes to the research question you have.
 Reseach paper:  Word clouds help create a visualization to represent text data (Dickinson, 2010;McNaught & Lam, 2010
+Research Paper: Language Learning: Comparing Native and Non-Native Speaker Vocabulary (https://blog.cyracom.com/the-lifelong-pursuit-of-language-learning-how-the-vocabularies-of-native-and-non-native-speakers-compare#:~:text=The%20researchers%20found%20that%20native,from%20ages%2016%20to%2050.)
 
 3. What are your actual findings, if any? Basic descriptive statistics are alright to use here (i.e., 
 means, ranges, counts or proportions).
-We've found that our word bank contained a lot of obscure and unused words that we didn't know. Our win rate was about 50%, so much
-more difficult than normal wordle.
+Eddie played 10 games; Ethan played 10 games. Collectively, we played a total of 20 games. Of these 20 games, we won a 
+total of 10 games. That means we had a 50% win rate. We would have the same probability of winning a coin flip. We think
+that a 50% win rate is relatively low. In addition to this, of the games that we won, the distribution of number of tries is heavily
+skewed to the right since we guessed the word in 5 to 6 tries. This is definitely more difficult than Wordle where 96% of games end in wins (https://benn.substack.com/p/how-to-play-wordle?s=r).
 
 4. How does the research contribute to the broad research question you asked? What are its 
 limitations in answering the “big picture” question?
-
+We think that the win-rate of our Wordle game helps us answer the amount of 4-lettered uncommonly used words that an average English speaker knows. However,
+some limitations may include the hints that our Wordle game gives the user. Even if they do not know the 4-letter word, they still have the 
+opportunity to guess that word. This could affect our understanding of the data as the win-rate may not truly reflect their knowledge/recognition of the
+4-letter word. However, the win-rate statistic is probably our best metric for understanding how well/how many uncommon 4-letter words that an average
+English speaker knows.
 
 5. What is a future direction research like this could take? How can this be expanded or 
 complement other work?
+One direction that we think that this research could take is to revive the usage of obscure 4-letter words by bringing awarenness to them. An attempt at
+expansion of this research question is instead of 4-letter words, we observe 5-letter words, 6-letter words, etc.
 
-
-Eddie played 10 games; Ethan played 10 games. Collectively, we played a total of 20 games. Of these 20 games, we won a 
-total of 10 games. That means we had a 50% win rate. We would have the same probability of winning a coin flip. We think
-that a 50% win rate is relatively low. Some things that we think can fix this is by using a word bank that only
-includes commonly used words. In addition to this, of the games that we won, the distribution of number of tries is heavily
-skewed to the right since we guessed the word in 5 to 6 tries."""
+"""
