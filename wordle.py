@@ -142,3 +142,26 @@ class Wordle:
 if __name__ == "__main__":
     w = Wordle()
     w.run()
+
+
+"""
+How well do English speakers know 4-lettered uncommonly used words?
+Given an unknown obscure 4-letter word and 6 tries, how often were players going to succeed in finding this word?
+
+1. How does the code address your narrow research question? For example, what information or 
+secondary data did you derive from primary sources?
+2. What is known about the phenomenon you are looking at? Consult and cite at least one source 
+(may be informal) that contributes to the research question you have.
+3. What are your actual findings, if any? Basic descriptive statistics are alright to use here (i.e., 
+means, ranges, counts or proportions).
+4. How does the research contribute to the broad research question you asked? What are its 
+limitations in answering the “big picture” question?
+5. What is a future direction research like this could take? How can this be expanded or 
+complement other work?
+
+
+Eddie played 10 games; Ethan played 10 games. Collectively, we played a total of 20 games. Of these 20 games, we won a 
+total of 10 games. That means we had a 50% win rate. We would have the same probability of winning a coin flip. We think
+that a 50% win rate is relatively low. Some things that we think can fix this is by using a word bank that only
+includes commonly used words. In addition to this, of the games that we won, the distribution of number of tries is heavily
+skewed to the right since we guessed the word in 5 to 6 tries."""
