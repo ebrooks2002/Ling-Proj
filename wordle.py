@@ -150,12 +150,21 @@ Given an unknown obscure 4-letter word and 6 tries, how often were players going
 
 1. How does the code address your narrow research question? For example, what information or 
 secondary data did you derive from primary sources?
+From the primary source were were able to eliminate words that weren't four letters, that had numbers, and that didn't have vowels.
+
 2. What is known about the phenomenon you are looking at? Consult and cite at least one source 
 (may be informal) that contributes to the research question you have.
+Reseach paper:  Word clouds help create a visualization to represent text data (Dickinson, 2010;McNaught & Lam, 2010
+
 3. What are your actual findings, if any? Basic descriptive statistics are alright to use here (i.e., 
 means, ranges, counts or proportions).
+We've found that our word bank contained a lot of obscure and unused words that we didn't know. Our win rate was about 50%, so much
+more difficult than normal wordle.
+
 4. How does the research contribute to the broad research question you asked? What are its 
 limitations in answering the “big picture” question?
+
+
 5. What is a future direction research like this could take? How can this be expanded or 
 complement other work?
 
