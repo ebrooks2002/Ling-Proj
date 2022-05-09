@@ -151,11 +151,11 @@ Given an unknown obscure 4-letter word and 6 tries, how often were players going
 1. How does the code address your narrow research question? For example, what information or 
 secondary data did you derive from primary sources?
 Inside the code we were able to eliminate words that weren't four letters, that had numbers, and that didn't have vowels from our list of words that
-we got from our primary source. (WHAT IS OUR PRIMARY SOURCE AND WHERE DID WE GET IT FROM?)
+we got from our primary source. Our primary source is a list of all of the words in the english dictionary. We found this text doc on GitHub, 
+and we deleted all non-four-letter words from it so that are program wouldn't have to scan over such a large file everytime it runs.
 
 2. What is known about the phenomenon you are looking at? Consult and cite at least one source 
 (may be informal) that contributes to the research question you have.
-Reseach paper:  Word clouds help create a visualization to represent text data (Dickinson, 2010;McNaught & Lam, 2010
 Research Paper: Language Learning: Comparing Native and Non-Native Speaker Vocabulary (https://blog.cyracom.com/the-lifelong-pursuit-of-language-learning-how-the-vocabularies-of-native-and-non-native-speakers-compare#:~:text=The%20researchers%20found%20that%20native,from%20ages%2016%20to%2050.)
 
 3. What are your actual findings, if any? Basic descriptive statistics are alright to use here (i.e., 
@@ -170,12 +170,11 @@ limitations in answering the “big picture” question?
 We think that the win-rate of our Wordle game helps us answer the amount of 4-lettered uncommonly used words that an average English speaker knows. However,
 some limitations may include the hints that our Wordle game gives the user. Even if they do not know the 4-letter word, they still have the 
 opportunity to guess that word. This could affect our understanding of the data as the win-rate may not truly reflect their knowledge/recognition of the
-4-letter word. However, the win-rate statistic is probably our best metric for understanding how well/how many uncommon 4-letter words that an average
+4-letter word. Additionally, our word bank isn't perfect because it contains acroynms, which aren't words. However, the win-rate statistic is probably our best metric for understanding how well/how many uncommon 4-letter words that an average
 English speaker knows.
 
 5. What is a future direction research like this could take? How can this be expanded or 
 complement other work?
 One direction that we think that this research could take is to revive the usage of obscure 4-letter words by bringing awarenness to them. An attempt at
 expansion of this research question is instead of 4-letter words, we observe 5-letter words, 6-letter words, etc.
-
 """
