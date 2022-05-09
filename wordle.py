@@ -136,7 +136,6 @@ class Wordle:
 
     def run(self):
         '''creates main game loop'''
-        print(self.correctWord)
         self.mainWin.mainloop()
         
 if __name__ == "__main__":

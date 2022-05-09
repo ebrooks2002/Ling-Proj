@@ -33,7 +33,6 @@ class WordBank:
         return False
 
     def getWords(self):
-        print(len(self.valid_words))
         return self.valid_words
     
 
